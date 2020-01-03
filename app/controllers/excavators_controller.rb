@@ -15,13 +15,7 @@ class ExcavatorsController < ApplicationController
 
   # POST /excavators
   def create
-    @excavator = Excavator.new(excavator_params)
 
-    if @excavator.save
-      render json: @excavator, status: :created, location: @excavator
-    else
-      render json: @excavator.errors, status: :unprocessable_entity
-    end
   end
 
   # PATCH/PUT /excavators/1
@@ -39,13 +33,11 @@ class ExcavatorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_excavator
-      @excavator = Excavator.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_excavator
+    @excavator = Excavator.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def excavator_params
-      params.fetch(:excavator, {})
-    end
+  # Only allow a trusted parameter "white list" through.
+
 end

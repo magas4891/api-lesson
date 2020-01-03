@@ -10,18 +10,20 @@ class TicketsController < ApplicationController
 
   # GET /tickets/1
   def show
-    render json: @ticket
+    @geo = @ticket["digsite_info"]["WellKnownText"]
+    p "*"*50
+    pp @geo
+    p "*"*50
+    @excavator = @ticket.excavator
+    p "*"*50
+    #reg_coordinates = /\((?<points>(\-?\d+(\.\d+)?\s\-?\d+(\.\d+)?(\,)?)+)/
+    #render json: @ticket
+    render :tickets => 'show'
   end
 
   # POST /tickets
   def create
-    @ticket = Ticket.new(ticket_params)
 
-    if @ticket.save
-      render json: @ticket, status: :created, location: @ticket
-    else
-      render json: @ticket.errors, status: :unprocessable_entity
-    end
   end
 
   # PATCH/PUT /tickets/1
@@ -39,13 +41,9 @@ class TicketsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ticket
-      @ticket = Ticket.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def ticket_params
-      params.fetch(:ticket, {})
-    end
 end

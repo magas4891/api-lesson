@@ -24,6 +24,8 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
 
     config.cache_store = :null_store
+
+    config.read_encrypted_secrets = true
   end
 
   # Don't care if the mailer can't send.

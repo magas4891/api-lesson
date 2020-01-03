@@ -1,0 +1,3 @@
+<p>
+  <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=400x300&markers=size:small%7Ccolor:red%7C32.08806865844325,-81.12154306144413%7C32.07206917625161,-81.13390268058475&key=#{Rails.application.secrets[:google_maps_api_key]}", alt: "Map" %>
+</p>
