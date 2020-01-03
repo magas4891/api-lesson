@@ -3,51 +3,72 @@
   <% my_url += "&markers=#{point.split(' ')[1]}%2C#{point.split(' ')[0]}" %>
 <% end %>
 <% my_url += "&key=#{Rails.application.secrets[:google_maps_api_key]}" %>
+<style type="text/css">
+  .content{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ticket-table{
+    text-align: left;
+    border-collapse: collapse;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+  a{
+    text-decoration: none;
+  }
+</style>
+<div class="content">
+  <h1>Ticket Info</h1>
+  <table class="ticket-table">
+    <tbody>
+      <tr>
+        <th scope="row">Id</th>
+        <td><%= @ticket.id %></td>
+      </tr>
+      <tr>
+        <th scope="row">Request Number</th>
+        <td><%= @ticket.request_number %></td>
+      </tr>
+      <tr>
+        <th scope="row">Sequence Number</th>
+        <td><%= @ticket.sequence_number %></td>
+      </tr>
+      <tr>
+        <th scope="row">Request Type</th>
+        <td><%= @ticket.request_type %></td>
+      </tr>
+      <tr>
+        <th scope="row">Date Times</th>
+        <td><%= @ticket.date_times["ResponseDueDateTime"] %></td>
+      </tr>
+      <tr>
+        <th scope="row">Primary Service Area Code</th>
+        <td><%= @ticket.service_area["PrimaryServiceAreaCode"]["SACode"] %></td>
+      </tr>
+      <tr>
+        <th scope="row">Additional Service Area Codes</th>
+        <td><%= @ticket.service_area["AdditionalServiceAreaCodes"]["SACode"] %></td>
+      </tr>
+      <tr>
+        <th scope="row">Excavator Company Name</th>
+        <td><%= @excavator["CompanyName"] %></td>
+      </tr>
+      <tr>
+        <th scope="row">Excavator Address</th>
+        <td><%= @excavator["Address"]["Zip"] + ' ' + @excavator["Address"]["State"] + ' '
+              + @excavator["Address"]["City"] + ' ' + @excavator["Address"]["Address"]%></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Polygon data:</h3>
+  <p>
+    <%= image_tag my_url %>
+  </p>
 
-<table class="ticket-table" style="text-align: left;">
-  <tbody>
-    <tr>
-      <th scope="row">Id</th>
-      <td><%= @ticket.id %></td>
-    </tr>
-    <tr>
-      <th scope="row">Request Number</th>
-      <td><%= @ticket.request_number %></td>
-    </tr>
-    <tr>
-      <th scope="row">Sequence Number</th>
-      <td><%= @ticket.sequence_number %></td>
-    </tr>
-    <tr>
-      <th scope="row">Request Type</th>
-      <td><%= @ticket.request_type %></td>
-    </tr>
-    <tr>
-      <th scope="row">Date Times</th>
-      <td><%= @ticket.date_times["ResponseDueDateTime"] %></td>
-    </tr>
-    <tr>
-      <th scope="row">Primary Service Area Code</th>
-      <td><%= @ticket.service_area["PrimaryServiceAreaCode"]["SACode"] %></td>
-    </tr>
-    <tr>
-      <th scope="row">Additional Service Area Codes</th>
-      <td><%= @ticket.service_area["AdditionalServiceAreaCodes"]["SACode"] %></td>
-    </tr>
-    <tr>
-      <th scope="row">Excavator Company Name</th>
-      <td><%= @excavator["CompanyName"] %></td>
-    </tr>
-    <tr>
-      <th scope="row">Excavator Address</th>
-      <td><%= @excavator["Address"]["Zip"] + ' ' + @excavator["Address"]["State"] + ' '
-            + @excavator["Address"]["City"] + ' ' + @excavator["Address"]["Address"]%></td>
-    </tr>
-  </tbody>
-</table>
-<h3>Polygon data:</h3>
-<p>
-  <%= image_tag my_url %>
-</p>
-
-<%= link_to "Back", tickets_path %>
+  <%= link_to "Back", tickets_path %>
+</div>
