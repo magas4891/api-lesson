@@ -5,18 +5,17 @@ class TicketsController < ApplicationController
   def index
     @tickets = Ticket.all
 
-    render json: @tickets
+    #render json: @tickets
+    render :tickets => 'index'
   end
 
   # GET /tickets/1
   def show
-    @geo = @ticket["digsite_info"]["WellKnownText"]
-    p "*"*50
-    pp @geo
-    p "*"*50
-    @excavator = @ticket.excavator
-    p "*"*50
-    #reg_coordinates = /\((?<points>(\-?\d+(\.\d+)?\s\-?\d+(\.\d+)?(\,)?)+)/
+    @geo_points = @ticket["digsite_info"]["WellKnownText"].
+        match(/\((?<points>(\-?\d+(\.\d+)?\s\-?\d+(\.\d+)?(\,)?)+)/)["points"].split(',')
+
+    @excavator = @ticket.excavator.excavator
+    #p @excavator.company_name
     #render json: @ticket
     render :tickets => 'show'
   end

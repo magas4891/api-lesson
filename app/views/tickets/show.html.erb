@@ -1,3 +1,53 @@
+<% my_url = "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=800x400" %>
+<% @geo_points.each do |point| %>
+  <% my_url += "&markers=#{point.split(' ')[1]}%2C#{point.split(' ')[0]}" %>
+<% end %>
+<% my_url += "&key=#{Rails.application.secrets[:google_maps_api_key]}" %>
+
+<table class="ticket-table" style="text-align: left;">
+  <tbody>
+    <tr>
+      <th scope="row">Id</th>
+      <td><%= @ticket.id %></td>
+    </tr>
+    <tr>
+      <th scope="row">Request Number</th>
+      <td><%= @ticket.request_number %></td>
+    </tr>
+    <tr>
+      <th scope="row">Sequence Number</th>
+      <td><%= @ticket.sequence_number %></td>
+    </tr>
+    <tr>
+      <th scope="row">Request Type</th>
+      <td><%= @ticket.request_type %></td>
+    </tr>
+    <tr>
+      <th scope="row">Date Times</th>
+      <td><%= @ticket.date_times["ResponseDueDateTime"] %></td>
+    </tr>
+    <tr>
+      <th scope="row">Primary Service Area Code</th>
+      <td><%= @ticket.service_area["PrimaryServiceAreaCode"]["SACode"] %></td>
+    </tr>
+    <tr>
+      <th scope="row">Additional Service Area Codes</th>
+      <td><%= @ticket.service_area["AdditionalServiceAreaCodes"]["SACode"] %></td>
+    </tr>
+    <tr>
+      <th scope="row">Excavator Company Name</th>
+      <td><%= @excavator["CompanyName"] %></td>
+    </tr>
+    <tr>
+      <th scope="row">Excavator Address</th>
+      <td><%= @excavator["Address"]["Zip"] + ' ' + @excavator["Address"]["State"] + ' '
+            + @excavator["Address"]["City"] + ' ' + @excavator["Address"]["Address"]%></td>
+    </tr>
+  </tbody>
+</table>
+<h3>Polygon data:</h3>
 <p>
-  <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=400x300&markers=size:small%7Ccolor:red%7C32.08806865844325,-81.12154306144413%7C32.07206917625161,-81.13390268058475&key=#{Rails.application.secrets[:google_maps_api_key]}", alt: "Map" %>
+  <%= image_tag my_url %>
 </p>
+
+<%= link_to "Back", tickets_path %>

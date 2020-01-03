@@ -1,0 +1,27 @@
+<% @tickets.each do |ticket| %>
+  <table class="ticket-table" style="text-align: left;">
+    <tbody>
+    <tr>
+      <th scope="row">Id</th>
+      <td><%= ticket.id %></td>
+    </tr>
+    <tr>
+      <th scope="row">Request Number</th>
+      <td><%= link_to ticket.request_number, ticket  %></td>
+    </tr>
+    <tr>
+      <th scope="row">Sequence Number</th>
+      <td><%= ticket.sequence_number %></td>
+    </tr>
+    <tr>
+      <th scope="row">Request Type</th>
+      <td><%= ticket.request_type %></td>
+    </tr>
+    <tr>
+      <th scope="row">Date Times</th>
+      <td><%= ticket.date_times["ResponseDueDateTime"] %></td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+<% end %>
