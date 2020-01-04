@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ExcavatorsController < ApplicationController
-  before_action :set_excavator, only: [:show, :update, :destroy]
+  before_action :set_excavator, only: %i[show update destroy]
 
   # GET /excavators
   def index
@@ -14,9 +16,7 @@ class ExcavatorsController < ApplicationController
   end
 
   # POST /excavators
-  def create
-
-  end
+  def create; end
 
   # PATCH/PUT /excavators/1
   def update
@@ -33,11 +33,10 @@ class ExcavatorsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_excavator
     @excavator = Excavator.find(params[:id])
   end
-
   # Only allow a trusted parameter "white list" through.
-
 end

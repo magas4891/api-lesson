@@ -63,9 +63,14 @@
         <td><%= @excavator["Address"]["Zip"] + ' ' + @excavator["Address"]["State"] + ' '
               + @excavator["Address"]["City"] + ' ' + @excavator["Address"]["Address"]%></td>
       </tr>
+      <tr>
+        <th scope="row">Excavator Crew on Site</th>
+        <td><%= @excavator["CrewOnsite"] %></td>
+      </tr>
     </tbody>
   </table>
   <h3>Polygon data:</h3>
+
   <p>
     <%= image_tag my_url %>
   </p>

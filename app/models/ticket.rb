@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Ticket < ApplicationRecord
-  #serialize :additional_service_area_code, Array
-  #serialize :excavator_attributes, JSON
+  # serialize :additional_service_area_code, Array
+  # serialize :excavator_attributes, JSON
   has_one :excavator
 
   alias_attribute(:RequestNumber, :request_number)
