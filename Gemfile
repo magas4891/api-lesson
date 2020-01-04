@@ -26,6 +26,10 @@ gem 'puma', '~> 3.7'
 # gem 'rack-cors'
 gem 'rubocop', require: false
 group :development, :test do
+  gem 'rspec-rails', '~> 3.9'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner', '~> 1.7'
+  gem 'shoulda-matchers'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 

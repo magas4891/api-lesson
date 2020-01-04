@@ -2,6 +2,7 @@
 
 class Excavator < ApplicationRecord
   # serialize :address, JSON
-  alias_attribute(:Excavator, :excavator)
   belongs_to :ticket
+
+  alias_attribute(:Excavator, :excavator)
 end
