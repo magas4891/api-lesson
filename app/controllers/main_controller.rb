@@ -27,13 +27,14 @@ class MainController < ApplicationController
   end
 
   def excavator_params
-    permit_params = params.permit(Excavator: %i[CompanyName CrewOnsite])
-    permit_params['Excavator'][:Address] = {
-        Address: params['Excavator']['Address'],
-        City: params['Excavator']['City'],
-        State: params['Excavator']['State'],
-        Zip: params['Excavator']['Zip']
-     }
+    permit_params = params.require(:Excavator).permit( :CompanyName,
+                                                       :CrewOnsite)
+    permit_params['address'] = {
+          Address: params['Excavator']['Address'],
+          City: params['Excavator']['City'],
+          State: params['Excavator']['State'],
+          Zip: params['Excavator']['Zip']
+       }
     permit_params
   end
 end

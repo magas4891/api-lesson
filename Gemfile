@@ -22,7 +22,7 @@ gem 'puma', '~> 3.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'moderate_parameters'
 # gem 'rack-cors'
 gem 'rubocop', require: false
 group :development, :test do

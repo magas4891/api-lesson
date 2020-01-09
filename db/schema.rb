@@ -16,7 +16,9 @@ ActiveRecord::Schema.define(version: 20191224120110) do
   enable_extension "plpgsql"
 
   create_table "excavators", force: :cascade do |t|
-    t.json "excavator"
+    t.string "company_name"
+    t.json "address"
+    t.boolean "crew_on_site"
     t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

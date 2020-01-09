@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Excavator < ApplicationRecord
-  # serialize :address, JSON
   belongs_to :ticket
+  validates_presence_of :company_name, :crew_on_site
 
-  alias_attribute(:Excavator, :excavator)
+  alias_attribute(:CrewOnsite, :crew_on_site)
+  alias_attribute(:CompanyName, :company_name)
 end
