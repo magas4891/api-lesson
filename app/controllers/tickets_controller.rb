@@ -14,10 +14,10 @@ class TicketsController < ApplicationController
   # GET /tickets/1
   def show
     @geo_points = @ticket['digsite_info']['WellKnownText'].match(
-        /\((?<points>(\-?\d+(\.\d+)?\s\-?\d+(\.\d+)?(\,)?)+)/
+      /\((?<points>(\-?\d+(\.\d+)?\s\-?\d+(\.\d+)?(\,)?)+)/
     )['points'].split(',')
 
-    @excavator = @ticket.excavator.excavator
+    @excavator = @ticket.excavator
     # render json: @ticket
     render tickets: 'show'
   end

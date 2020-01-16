@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Ticket < ApplicationRecord
-  has_one :excavator, dependent: :delete
+  has_one :excavator, dependent: :destroy
   validates_associated :excavator
   validates_presence_of :request_number, :sequence_number, :request_type,
-            :date_times, :service_area, :digsite_info
+                        :date_times, :service_area, :digsite_info
 
   alias_attribute(:RequestNumber, :request_number)
   alias_attribute(:SequenceNumber, :sequence_number)

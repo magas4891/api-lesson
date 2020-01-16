@@ -26,11 +26,11 @@ gem 'moderate_parameters'
 # gem 'rack-cors'
 gem 'rubocop', require: false
 group :development, :test do
-  gem 'rspec-rails', '~> 3.9'
-  gem 'factory_bot_rails'
-  gem 'database_cleaner', '~> 1.7'
-  gem 'shoulda-matchers'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'database_cleaner', '~> 1.7'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.9'
+  gem 'shoulda-matchers'
 end
 
 group :development do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
@@ -21,12 +23,12 @@ RSpec.describe Ticket, type: :model do
       expect(ticket).to be_valid
     end
     it 'be valid with valid attributes' do
-      expect(ticket = build(:valid_ticket, sequence_number: nil)).to_not be_valid
+      expect(build(:valid_ticket, sequence_number: nil)).to_not be_valid
     end
   end
 
-  context "deleting" do
-    it 'count of books became less on 1' do
+  context 'deleting' do
+    it 'count of tickets became less on 1' do
       expect { ticket.destroy }.to change { Ticket.count }.by(-1)
     end
   end

@@ -60,8 +60,8 @@
       </tr>
       <tr>
         <th scope="row">Excavator Address</th>
-        <td><%= @excavator["Address"]["Zip"] + ' ' + @excavator["Address"]["State"] + ' '
-              + @excavator["Address"]["City"] + ' ' + @excavator["Address"]["Address"]%></td>
+        <td><%= @excavator.address["Zip"] + ', ' + @excavator.address["State"] + ', ' \
+                + @excavator.address["City"] + ', ' + @excavator.address["Address"]%></td>
       </tr>
       <tr>
         <th scope="row">Excavator Crew on Site</th>
