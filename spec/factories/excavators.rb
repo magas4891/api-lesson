@@ -13,6 +13,7 @@ FactoryBot.define do
         }
       end
       crew_on_site { true }
+      ticket_id { Ticket.last.id }
     end
   end
 end

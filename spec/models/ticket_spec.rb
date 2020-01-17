@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
-
 RSpec.describe Ticket, type: :model do
   let!(:ticket) { create(:valid_ticket) }
 
   context 'validation' do
-    it { is_expected.to validate_presence_of(:request_number) }
-    it { is_expected.to validate_presence_of(:sequence_number) }
-    it { is_expected.to validate_presence_of(:request_type) }
-    it { is_expected.to validate_presence_of(:date_times) }
-    it { is_expected.to validate_presence_of(:service_area) }
-    it { is_expected.to validate_presence_of(:digsite_info) }
+    %i[request_number
+       sequence_number
+       request_type
+       date_times
+       service_area
+       digsite_info].each do |field|
+      it { is_expected.to validate_presence_of(:"#{field}") }
+    end
   end
 
   context 'assotiation' do
@@ -22,14 +22,30 @@ RSpec.describe Ticket, type: :model do
     it 'be valid with valid attributes' do
       expect(ticket).to be_valid
     end
-    it 'be valid with valid attributes' do
-      expect(build(:valid_ticket, sequence_number: nil)).to_not be_valid
+
+    %i[request_number
+       sequence_number
+       request_type
+       date_times
+       service_area
+       digsite_info].each do |invalid_attribute|
+      it "be invalid without #{invalid_attribute}" do
+        expect(build(:valid_ticket, "#{invalid_attribute}": nil)).to_not be_valid
+      end
     end
   end
 
   context 'deleting' do
     it 'count of tickets became less on 1' do
       expect { ticket.destroy }.to change { Ticket.count }.by(-1)
+    end
+  end
+
+  context 'accept_nested_attributes' do
+    it { should accept_nested_attributes_for(:excavator) }
+    it do
+      should accept_nested_attributes_for(:excavator)
+        .allow_destroy(true)
     end
   end
 end

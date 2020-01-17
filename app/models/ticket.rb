@@ -13,5 +13,5 @@ class Ticket < ApplicationRecord
   alias_attribute(:ServiceArea, :service_area)
   alias_attribute(:ExcavationInfo, :digsite_info)
 
-  accepts_nested_attributes_for :excavator
+  accepts_nested_attributes_for :excavator, allow_destroy: true
 end
